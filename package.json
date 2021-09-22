@@ -4,22 +4,32 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "dev:parcel": "parcel serve ./src/index.html",
+    "dev:css": "tailwindcss -o src/tailwind.css -w",
+    "build:parcel": "parcel build ./src/index.html",
+    "build:css": "tailwindcss -o src/tailwind.css"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.15",
+    "@heroicons/react": "^1.0.4",
     "@reduxjs/toolkit": "1.5.0",
-    "next": "latest",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "react-redux": "7.2.2",
     "@tailwindcss/line-clamp": "^0.2.0",
+    "currency-formatter": "^1.5.8",
     "firebase": "^8.6.1",
-    "firebase-admin": "^9.8.0"
+    "firebase-admin": "^9.8.0",
+    "next": "^11.1.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "7.2.2",
+    "react-responsive-carousel": "^3.2.21"
   },
   "license": "MIT",
   "devDependencies": {
-    "autoprefixer": "^10.2.5",
-    "postcss": "^8.2.15",
-    "tailwindcss": "^2.1.2"
+    "autoprefixer": "^10.3.4",
+    "postcss": "^8.3.6",
+    "tailwindcss": "^2.2.15"
   }
 }
