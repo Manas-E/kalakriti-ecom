@@ -2,6 +2,7 @@ import React from 'react'
 import Product from './Product'
 
 function ProductFeed({products}) {
+  
     return (
         <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52 mx-auto ">
            
@@ -15,8 +16,8 @@ function ProductFeed({products}) {
                         image={image}
                         />
             ))}
-            <div className="col-span-full items-center content-center">
-                <img className="lg:ml-40" src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Fashion/Event/Jupiter_21/Wave1/Newlaunches/AllHeaders/V1/AW-PC.jpg"/> 
+            <div className="col-span-full items-center content-center object-contain lg:ml-28">
+                <img className="" src="https://images-eu.ssl-images-amazon.com/images/G/31/img21/Fashion/Event/Jupiter_21/Wave1/Newlaunches/AllHeaders/V1/AW-PC.jpg"/> 
             </div>
           
             <div className="md:col-span-2">
@@ -44,6 +45,7 @@ function ProductFeed({products}) {
                         />
             ))}
         </div>
+            
     )
 }
 

@@ -2,27 +2,32 @@ import React from 'react'
 import Image from "next/image"
 
 import { MenuIcon,SearchIcon, ShoppingCartIcon} from "@heroicons/react/outline"
+import {signIn,signOut,useSession} from "next-auth/client"
+import { useRouter } from 'next/dist/client/router'
+import { useSelector } from 'react-redux'
+import { selectItems } from '../slices/basketSlice'
 
 const headerConstants={
 
-    HEADER_IMG : "/logo.png",
+    HEADER_IMG : "/logo1.png",
 
 }
 
 function Header() {
+
+    const [session] =useSession();
+    const router =useRouter();
+    const items= useSelector(selectItems);
+
     return (
         <header>
             
             {/* Top div */}
-            <div className="flex bg-amazon_blue p-1 flex-grow py-2">
-                <div className="z-5 mt-2 flex items-center flex-grow sm:flex-grow-0">
-                <Image  
-                src= {headerConstants.HEADER_IMG}
-                width= {150}    
-                height={40}
-                objectFit="contain"
-                className="cursor-pointer"
-                />
+            <div className="flex bg-amazon_blue p-1 flex-grow py-2 items-center">
+                <div className=" w-20 h-1 md:w-20 md:h-10 mr-5  justify-self-start   z-5 mt-1 flex items-center flex-grow sm:flex-grow-0">
+              
+
+                <img  onClick={()=>router.push("/")} className="w-15 h-10  rounded-full -mt-2 cursor-pointer" src="/l1.PNG" alt="" />
                 </div>
 
                 <div className=" hidden sm:flex items-center h-10 rounded-md flex-grow   bg-yellow-400 hover:bg-yellow-500 cursor-pointer">
@@ -36,8 +41,8 @@ function Header() {
                 <div className="ml-10 flex text-white items-center space-x-6 text-xs whitespace-nowrap    ">
 
                     <div className="link">
-                        <p>Hello, Manas Sharma </p>
-                        <p className="font-extrabold md:text-sm ">Account </p>
+                        <p> Hello, {session? session.user.name : "Stranger" } </p>
+                        <p onClick={session?  signOut: signIn}  className="font-extrabold md:text-sm ">{!session? "Sign in" : "Sign Out" }</p>
                         
                     </div>
                     
@@ -47,8 +52,8 @@ function Header() {
                         
                     </div>
                     
-                    <div className="relative link flex items-center">
-                        <span className="absolute top-0 right-0 md:right-11 font-bold  bg-yellow-400 rounded-full text-black">0</span>
+                    <div   onClick={()=>router.push("/checkout")} className="relative link flex items-center">
+                        <span className="absolute p-0.5 top-0 right-0 md:right-11 font-bold  bg-yellow-400 rounded-full text-black">{items.length}</span>
                         <ShoppingCartIcon className="h-10" />
                         <p className="hidden md:inline font-extrabold md:text-sm ">Basket </p>
                         
