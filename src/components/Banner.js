@@ -16,16 +16,20 @@ function Banner() {
             className="w-full"
             > 
             <div>
-                <img loading="lazy" src="https://m.media-amazon.com/images/I/61ocm7X057L._SX1500_.jpg"  />
+                <img loading="lazy" height={400} src="./image1.gif"  />
             </div>
 
             <div>
-                <img loading="lazy" src="https://m.media-amazon.com/images/I/5138i4uOXxL._SX3000_.jpg"  />
+                <img loading="lazy"  height={400} src="./image2.jpg"  />
 
             </div>
 
             <div>
-                <img loading="lazy" src="https://m.media-amazon.com/images/I/71Mda8Bc3iL._SX3000_.jpg"  />
+                <img loading="lazy" height={400} src="./image3.jpg"  />
+            </div>
+
+            <div>
+                <img loading="lazy" height={400} src="./image4.jpg"  />
             </div>
             </Carousel>
         </div>

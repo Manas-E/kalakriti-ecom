@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 const MaxRating =5;
 const MinRating=1;
 
-function Product({id,title,description,price,category,image}) {
+function Product({id,title,description,price,category,image,showButton=true}) {
     const [rating] = useState(Math.floor(Math.random()*(MaxRating -MinRating +1)) +1 );
     const dispatch = useDispatch();
     const addItemToBasket= ()=>{
@@ -17,8 +17,8 @@ function Product({id,title,description,price,category,image}) {
     }
 
     return (
-        <div className="relative flex flex-col bg-white z-30 p-10 m-5">
-        <p className="absolute top-2 right-2 text-xs italic text-gray-400 ">{category} </p>  
+        <div className="relative flex flex-col bg-white z-30 p-10 m-5 addeffect">
+        <p className="absolute top-2 right-2 text-xs italic text-gray-400 ">{category}  </p>  
 
         <Image src={`/api/imageProxy?url=${encodeURIComponent(image)}`} loading="lazy" height={200} width={200} objectFit="contain" />  
 
@@ -37,7 +37,7 @@ function Product({id,title,description,price,category,image}) {
                 {cformat.format(price,{code: "USD"})}
         </div>
 
-                <button onClick={addItemToBasket}  className=" mt-auto   button">Add to Basket</button>
+                <button onClick={addItemToBasket}  className={`${!showButton ? "hidden" : ""} mt-auto  button`}>Add to Basket</button>
         </div>
     )
 }

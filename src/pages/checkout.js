@@ -23,7 +23,7 @@ function Checkout() {
 
                 {/* Left */}
                 <div className="flex-grow m-5 shadow-sm ">
-                    <Image src="https://m.media-amazon.com/images/I/71dKN+yU9JL._SX3000_.jpg"
+                    <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShOXQM5VgY_zcNzuLPDPxipfRnSY9GlkuTXA&usqp=CAU"
                     width={1020}
                     height={250}
                     objectFit="contain" />
@@ -46,7 +46,7 @@ function Checkout() {
                         title={item.title}
                         description={item.description}
                         price={item.price}
-                        category={item.category}
+                        category={item.author}
                         image={item.image} />
                         ))}
                         
@@ -64,7 +64,7 @@ function Checkout() {
 
                         </span>
                         </h2>
-                        <button  className={`button mt-2 ${!session && "from-gray-300 to-gray-500 border-gray-200 text-gray-200 cursor-not-allowed "}`}>
+                        <button  onClick={()=>router.push("/contact")}  className={`button mt-2 ${!session && "from-gray-300 to-gray-500 border-gray-200 text-gray-200 cursor-not-allowed "}`}>
                             {!session ? "Sign in to Proceed" : "Proceed toCheckout"}
                         </button>
                     </div> }

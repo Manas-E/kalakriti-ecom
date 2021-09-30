@@ -26,7 +26,7 @@ function CheckoutProduct({id,title,description,price,category,image=""}) {
  
     return (
         <div className="grid grid-flow-col grid-col-5">     
-            <Image className="col-span-1" src={image} loading="lazy" width={200} height={200} object-fit="contain"/>
+            <Image className="col-span-1" src={`/api/imageProxy?url=${encodeURIComponent(image)}`} loading="lazy" width={200} height={200} object-fit="contain"/>
 
             {/* middle */}
             <div className="col-span-3 mx-5">
