@@ -34,7 +34,7 @@ function Header() {
                 </div>
 
                 <div className=" hidden sm:flex items-center h-10 rounded-md flex-grow   bg-yellow-400 hover:bg-yellow-500 cursor-pointer">
-                    <input ref={qauery} className=" w-6 flex-grow flex-shrink p-2 rounded-l-md outline-none"  type="text" />
+                    <input ref={qauery} placeholder="Search by Art name" className=" w-6 flex-grow flex-shrink p-2 rounded-l-md outline-none"  type="text" />
                         <svg onClick={()=>router.push({
                                 pathname: '/searchResults',
                                 query: {value:qauery.current.value},
