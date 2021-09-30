@@ -7,16 +7,20 @@ import data from "./data.json"
 
 export default function Home({products}) {
   return (
-    <div className="bg-gray-100">
+
+    <div className="bg-gray-100 absolute inset-0  max-w-full overflow:hidden">
       <Head>
         <title>KalaKriti</title>
-      </Head>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width ,shrink-to-fit=no" />
 
+
+      </Head>
+    
       {/* ---- TO BEGIN, delete this section and GET CODING!!! ---- */}
      <Header />
       {/* ---- ---- */}
 
-      <main className="max-w-screen-2xl  mx-auto">
+      <main className="  mx-auto max-w-max">
 
       {/* banner */}
       <Banner />

@@ -19,9 +19,9 @@ function MenuBar() {
           <Paper>
             <MenuList className="bg-amazon_blue-light text-white">
               <MenuItem className={`${ !session && "cursor-not-allowed"} hover:bg-white hover:text-black`}  onClick={()=>( session && router.push("/userProfile")) }  >My account</MenuItem>
-              <MenuItem className={` ${!session && "cursor-not-allowed"} hover:bg-white hover:text-black`}  onClick={()=>(session && router.push("/createNFT"))}>Create NFT</MenuItem>
+              <MenuItem className={`${!session && "cursor-not-allowed"} hover:bg-white hover:text-black`}  onClick={()=>(session && router.push("/createNFT"))}>Create NFT</MenuItem>
         
-
+              <MenuItem className="hover:bg-white hover:text-black" onClick={()=>router.push("/contact")}> Contact </MenuItem>
               <MenuItem className="hover:bg-white hover:text-black" onClick={session?  signOut: signIn}> {!session ? "Log In":  "Log Out" } </MenuItem>
             </MenuList>
           </Paper>
