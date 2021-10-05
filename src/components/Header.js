@@ -83,8 +83,7 @@ function Header() {
                 <p className="link  hidden md:inline">Gif's</p>
                 <p className="link  hidden md:inline">Today'Special</p>
                 <p className={`${!session && "cursor-not-allowed"} link hidden md:inline`} onClick={()=>(session && router.push("/createNFT"))}>Create NFT</p>
-                <p className="link"></p>
-                <p className="link"></p>
+              
 
             </div>
 
