@@ -77,4 +77,7 @@
         opacity: 1;
       }
       }
- 
+      #nprogress .bar {
+        background: purple;
+      }
+      

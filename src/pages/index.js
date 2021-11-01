@@ -20,7 +20,7 @@ export default function Home({products}) {
      <Header />
       {/* ---- ---- */}
 
-      <main className="  mx-auto max-w-max">
+      <main  id="main"  className="  mx-auto max-w-max">
 
       {/* banner */}
       <Banner />

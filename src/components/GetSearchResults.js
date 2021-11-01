@@ -18,12 +18,20 @@ export class GetSearchResults extends Component {
         (snapshots)=>snapshots.forEach(
             (doc)=>{
             
-                if(doc.data().title.toLowerCase() === this.state.q.toLowerCase() ) {
-                    console.log(doc.data(),doc)
+                if( this.state.q != undefined &&  doc.data().title.toLowerCase() === this.state.q.toLowerCase() ) {
+                    console.log(doc.data(),doc,"<<<")
                     // this.state.list.push(doc.data())
                     this.setState({list: [...this.state.list,doc.data()]})
                       
                 }
+
+                if( this.state.category != undefined &&  doc.data()?.category?.toLowerCase() === this.state.category.toLowerCase() ) {
+                    console.log(doc.data(),doc,"<<<",this.state.category)
+                    // this.state.list.push(doc.data())
+                    this.setState({list: [...this.state.list,doc.data()]})
+                      
+                }
+                
 
             }
         )
@@ -46,7 +54,8 @@ export class GetSearchResults extends Component {
         this.state ={
             q: props.query,
             list:[],
-            change:0
+            change:0,
+            category: props.category
        }
         console.log("I'm constructor")
         this.search();
@@ -72,6 +81,11 @@ export class GetSearchResults extends Component {
         if(this.state.test === 1){
 
         this.state.test =0;
+
+        this.searchResult = <div className="flex">
+        <h1 className="font-extrabold text-3xl p-10"> Found "{this.state.list.length }" Results  </h1>
+    </div>
+
         this.renderThis= <div >
             { this.state.list.length > 0  ?  <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  mx-auto ">
                  {this.state.list.map(({title,description,price,author,imageURL},id)=>(
@@ -85,7 +99,7 @@ export class GetSearchResults extends Component {
                          />
                  ))}
                
-             </div>  : <h1>this is search </h1> }
+             </div>  : <h1>Nothing Found</h1> }
         
              </div>
 
@@ -95,10 +109,12 @@ export class GetSearchResults extends Component {
             <div className="flex flex-col">
             
             <Header />
-            <div className="flex">
-                <h1 className="font-extrabold text-3xl p-10"> Found "{this.state.list.length }" Results  </h1>
-            </div>
+            
+            { this.state.category !== undefined ? "" : this.searchResult   }
+            
+            
             {this.renderThis}
+            
             </div>
         )
     }

@@ -9,7 +9,9 @@
     "rating": {
     "rate": 3.9,
     "count": 120
-    }
+    },
+    "quantity":1,
+    "category":"abstract"
     },
     {
     "id": 2,
@@ -21,7 +23,10 @@
     "rating": {
     "rate": 3.9,
     "count": 120
-    }
+    },
+    "quantity":1,
+    "category":"abstract"
+
     },
     {
     "id": 3,
@@ -33,7 +38,9 @@
     "rating": {
     "rate": 3.9,
     "count": 120
-    }
+    },
+    "quantity":1,
+    "category":"abstract"
     },
     {
     "id": 4,
@@ -45,7 +52,9 @@
     "rating": {
     "rate": 3.9,
     "count": 120
-    }
+    },
+    "quantity":1,
+    "category":"abstract"
     },
     {
     "id": 5,
@@ -57,7 +66,9 @@
     "rating": {
     "rate": 3.9,
     "count": 120
-    }
+    },
+    "quantity":1,
+    "category":"abstract"
     },
     {
     "id": 6,
@@ -69,7 +80,9 @@
     "rating": {
     "rate": 3.9,
     "count": 120
-    }
+    },
+    "quantity":1,
+    "category":"abstract"
     },
     {
     "id": 7,
@@ -81,7 +94,9 @@
     "rating": {
     "rate": 3.9,
     "count": 120
-    }
+    },
+    "quantity":1,
+    "category":"abstract"
     },
     {
     "id": 8,
@@ -93,7 +108,9 @@
     "rating": {
     "rate": 3.9,
     "count": 120
-    }
+    },
+    "quantity":1,
+    "category":"anime"
     },
     {
     "id": 9,
@@ -105,7 +122,9 @@
     "rating": {
     "rate": 3.9,
     "count": 120
-    }
+    },
+    "quantity":1,
+    "category":"anime"
     },
     {
     "id": 10,
@@ -117,7 +136,9 @@
     "rating": {
     "rate": 3.9,
     "count": 120
-    }
+    },
+    "quantity":1,
+    "category":"abstract"
     },
     {
     "id": 11,
@@ -129,7 +150,9 @@
     "rating": {
     "rate": 3.9,
     "count": 120
-    }
+    },
+    "quantity":1,
+    "category": "abstract"
     }
     ]
     

@@ -15,6 +15,7 @@ function createNFT() {
     const name = useRef();
     const image = useRef();
     const description = useRef();
+    const category = useRef();
     const price = useRef(0);
     const [url,seturl]=useState("");
     const addNFT = async ()=>{
@@ -33,6 +34,7 @@ function createNFT() {
             author: session.user.name,
             photoURL:session.user.image,
             uid: session.user.email,
+            category:category.current.value,
 
         }).then((res)=>{
 
@@ -59,7 +61,17 @@ function createNFT() {
                 <input onChange={(e)=>{seturl(e.target.value)}} className="bg-amazon_blue-light p-5 focus:border-white focus:border-2 outline-none text-white" ref={image} type="text" placeholder="Pic URL" />
                  <input className="bg-amazon_blue-light p-5 focus:border-white  focus:border-2 outline-none text-white border-white" ref={description} type="text" placeholder="Description" />
                  <input className="bg-amazon_blue-light p-5 focus:border-white  focus:border-2 outline-none text-white" ref={price} type="number"  placeholder="Price" />
+                 <select list="browsers"  className="bg-amazon_blue-light p-5 focus:border-white  focus:border-2 outline-none text-white w-70 " ref={category}   placeholder="Category" >
  
+      
+                  <option value="Abstract" >Abstract</option>
+                  <option value="Anime" >Anime</option>
+                  <option value="Gif" >Gif</option>
+                  <option value="Portrait" >Portrait</option>
+                 <option value="Other" >Other</option>
+              
+                </select>
+
                  <button className="button p-4 w-full rounded-md" onClick={addNFT}>Add</button>
             </div>
          </div>

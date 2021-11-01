@@ -30,5 +30,6 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 firebase.js
+/pages/api/config.js
 # vercel
 .vercel

@@ -12,7 +12,6 @@ function Product({id,title,description,price,category,image,showButton=true}) {
     const [rating] = useState(Math.floor(Math.random()*(MaxRating -MinRating +1)) +1 );
     const dispatch = useDispatch();
     const addItemToBasket= ()=>{
-
         dispatch(addToBasket({id,title,description,price,category,image}));
     }
 

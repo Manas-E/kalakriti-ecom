@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import Image from "next/image"
 import { StarIcon } from '@heroicons/react/solid';
+import { MinusCircleIcon } from '@heroicons/react/solid';
+import { PlusCircleIcon } from '@heroicons/react/solid';
+
 import cformat  from "currency-formatter" 
 
 import { addToBasket, removeFromBasket } from '../slices/basketSlice';
@@ -10,7 +13,7 @@ import { useDispatch } from 'react-redux';
 const MaxRating =5;
 const MinRating=1;
 
-function CheckoutProduct({id,title,description,price,category,image=""}) {
+function CheckoutProduct({id,title,description,price,category,image="",quantity=0}) {
     const [rating] = useState(Math.floor(Math.random()*(MaxRating -MinRating +1)) +1 );
     const dispatch = useDispatch();
 
@@ -43,6 +46,7 @@ function CheckoutProduct({id,title,description,price,category,image=""}) {
 
                 <div className="mb-5"> 
                 {cformat.format(price,{code: "USD"})}
+
                 </div>
 
 
@@ -50,9 +54,16 @@ function CheckoutProduct({id,title,description,price,category,image=""}) {
             </div>
             
             {/* Right Add and remove button */}
-            <div className="flex flex-col space-y-2 my-auto justify-self-end">
-                <button className="button" onClick={addItemToBasket}>Add to Basket</button>
-                <button className="button" onClick={removeItemFromBasket}>Remove from Basket</button>
+            <div className="flex  spce-x-5 items-center  justify-self-end">
+              
+                        <PlusCircleIcon  className= " text-yellow-400 h-20 active:text-yellow-500   " onClick={addItemToBasket} />
+               
+                        <span className="text-xl select-none"> {quantity}</span>
+               
+
+                        <MinusCircleIcon   className= " text-yellow-400 h-20 active:text-yellow-500   " onClick={removeItemFromBasket}/>
+
+
 
             </div>
         </div>

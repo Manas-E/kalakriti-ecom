@@ -47,7 +47,8 @@ function Checkout() {
                         description={item.description}
                         price={item.price}
                         category={item.author}
-                        image={item.image} />
+                        image={item.image}
+                        quantity={item.quantity} />
                         ))}
                         
                     </div>

@@ -1,36 +1,61 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Header from '../components/Header'
 import {signIn,signOut,useSession} from "next-auth/client"
 import Image from "next/image"
 import  MyCard from '../components/MyCard'
 import Card from "@mui/material/Card";
 import { db } from '../../firebase'
-import Product from '../components/Product'
+import UserProduct from '../components/UserProduct'
 
 
 function UserProfile() {
     const [session] =useSession();
     const [list,setList]= useState([]);
+
+    const list1 = []
     const [isSearch,setsearch]=useState(false);
+    const [updateTrigger,setTrigger] = useState(false)
+
+
+ 
+
+
+
   const search= async    (query)=>{
     await db.collection('nft').get().then(
         (snapshots)=>snapshots.forEach(
             (doc)=>{
-                console.log(doc.data())
 
+               let data = doc.data()
+               let id= doc.id;
                 if(doc.data().uid.toLowerCase() === query.toLowerCase() ) {
-                    // this.state.list.push(doc.data())
-                  setList( [...list,doc.data()])
-                      
-                }
+                // this.state.list.push(doc.data())
 
+                //   setList( [...list,doc.data()])
+              
+                  list1.push({...data,id:id})
+                  console.log(list1,">>>>>11")
+
+                 
+                }
+               
             }
         )
         
-    )
+    ).then(()=>{
+        console.log(list1,">>>>>22")
+        setList(list1)
+    })
 
             setsearch(true);
     }
+
+    useEffect( async ()=>{
+
+        const a = await search(session.user.email)
+        return a 
+
+    },[updateTrigger])
 
     return (
         <div className="flex flex-col ">
@@ -62,9 +87,11 @@ function UserProfile() {
 
             :   <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-auto ">
                
-                { list.length > 0  ? list.map(({title,description,price,author,imageURL},id)=>(
+               {console.log(list,"<<<<")}
+             
+                { list.length > 0  ? list.map(({title,description,price,author,imageURL,id})=>(
                      
-                     <Product key={id}
+                     <UserProduct key={id}
                      id={id}
                      title={title}
                      category={author}
@@ -72,7 +99,8 @@ function UserProfile() {
                      price={price}
                      image={imageURL}
                      showButton={false}
-                     />
+                     setTrigger={setTrigger}
+                      />
                     
              ))
                    : 

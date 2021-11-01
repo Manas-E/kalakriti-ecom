@@ -19,9 +19,10 @@ function searchResults() {
       
     // },[])
     const query = router.query.value
+    const category = router.query.category
     console.log("I'm search results")
     return (
-       <GetSearchResults query={query}  />
+       <GetSearchResults query={query} category={category}  />
     )
 }
 
