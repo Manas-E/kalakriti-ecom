@@ -13,7 +13,7 @@ import { useDispatch } from 'react-redux';
 const MaxRating =5;
 const MinRating=1;
 
-function CheckoutProduct({id,title,description,price,category,image="",quantity=0}) {
+function CheckoutProduct({id,title,description,price,category,image="",quantity=1}) {
     const [rating] = useState(Math.floor(Math.random()*(MaxRating -MinRating +1)) +1 );
     const dispatch = useDispatch();
 

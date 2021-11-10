@@ -15,7 +15,7 @@ export const basketSlice = createSlice({
   reducers: {
     addToBasket: (state, action) => {
       const data = action.payload;
-      var quantity=0;
+      var quantity=1;
       var itemPresent=false;
       state.items.map((item)=>{
         if(data.id === item.id)

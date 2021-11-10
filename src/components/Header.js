@@ -79,7 +79,7 @@ function Header() {
             <div className="flex items-center bg-amazon_blue-light space-x-3 p-2 pl-6  text-white ">
                 <p className="link flex items-center" >
                     <MenuIcon onClick={()=>setmenu(!menu)} className="h-10"/>
-                    <p>All</p>
+                    <p onClick={()=>router.push("/")}>All</p>
                 </p>
                 <div className="absolute top-28 z-40" style={{display: menu? "" : "none"}}> <MenuBar /> </div>
                 <p className="link" onClick={()=>router.push({
