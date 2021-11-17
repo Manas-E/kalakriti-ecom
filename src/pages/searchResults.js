@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import firebase from "firebase"
 import { db } from '../../firebase';
-import Header from '../components/Header';
 
 
-import GetSearchResults from '../components/GetSearchResults';
+import GetSearchData from '../components/GetSearchData';
 
 
-function searchResults() {
+function searchResults({searchResultsData}) {
     const router =useRouter();
 
     // useEffect(() => {
@@ -20,10 +18,52 @@ function searchResults() {
     // },[])
     const query = router.query.value
     const category = router.query.category
-    console.log("I'm search results")
+    console.log("I'm search results",searchResultsData)
     return (
-       <GetSearchResults query={query} category={category}  />
+       <GetSearchData query={query} category={category} searchResultsData={searchResultsData}  />
     )
 }
 
 export default searchResults
+
+
+export async function getServerSideProps(context){
+ 
+    var query=context.query.value
+    const category = context.query.category
+    var list = [];
+ console.log(context.query.value)
+    await db.collection('nft').get().then(
+        (snapshots)=>snapshots.forEach(
+            (doc)=>{
+            
+                if( query != undefined &&  doc.data().title.toLowerCase() === query.toLowerCase() ) {
+                    console.log(doc.data(),doc,"<<<")
+                    // this.state.list.push(doc.data())
+                    list= [...list,doc.data()]
+                      
+                }
+
+                if( category != undefined &&  doc.data()?.category?.toLowerCase() === category.toLowerCase() ) {
+                    // this.state.list.push(doc.data())
+                    list= [...list,doc.data()]
+                      
+                }
+                
+
+            }
+        )
+    )
+
+    const searchResultsData = list;
+
+    return {
+        props:{
+          searchResultsData
+        }
+      }
+
+
+
+}
+

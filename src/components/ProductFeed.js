@@ -4,9 +4,13 @@ import Product from './Product'
 import  MyCard from './MyCard'
 
 import Card from "@mui/material/Card";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {signIn,signOut,useSession} from "next-auth/client"
 
 function ProductFeed({products}) {
-  
+    const [session] =useSession();
+
     return (
         <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52 mx-auto ">
            
@@ -28,12 +32,18 @@ function ProductFeed({products}) {
                     
                     <Card className="flex flex-col items-center addeffect m-5 p-5"  sx={{ maxWidth: 480 }}>
 
-                    <svg  xmlns="http://www.w3.org/2000/svg" className="text-yellow-400  flex flex-col h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg onClick={()=>session ? toast("You're already Signed in 😄", {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                    theme:"dark"
+                    }) : signIn  }   
+                    xmlns="http://www.w3.org/2000/svg" className="cursor-pointer text-yellow-400  flex flex-col h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
                         </svg>
                     <MyCard 
                     title="Sign In"
                     description="Sign in to buy and sell your own NFTs"
+                    
 
                     />  
 

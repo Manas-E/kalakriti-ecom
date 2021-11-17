@@ -14,5 +14,7 @@
     .addeffect{
         @apply    hover:border-black hover:shadow-2xl
     }
-   
+   .Toastify{
+       @apply absolute bg-red-500 bottom-20 
+   }
 }

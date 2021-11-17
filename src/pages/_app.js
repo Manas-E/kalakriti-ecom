@@ -12,6 +12,7 @@ Router.events.on('routeChangeStart', () => NProgress.start()); Router.events.on(
 
 const MyApp = ({ Component, pageProps }) => {
   return (
+    
     <AuthProvider>
     <Provider store={store}>
       <Component {...pageProps} />

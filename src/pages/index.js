@@ -5,6 +5,10 @@ import Banner from "../components/Banner";
 import ProductFeed from "../components/ProductFeed";
 import data from "./data.json"
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 export default function Home({products}) {
   return (
 
@@ -26,7 +30,10 @@ export default function Home({products}) {
       <Banner />
       {/* product feed  */}
       <ProductFeed products={products} />
+
+
       </main>
+      <ToastContainer />
 
     </div>
   );

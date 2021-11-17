@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux'
 import { selectItems } from '../slices/basketSlice'
 import MenuBar from "./MenuBar"
 import { useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const headerConstants={
 
@@ -57,8 +59,12 @@ function Header() {
                         
                     </div>
                     
-                    <div className="link">
-                        <p></p>
+                        <div onClick={()=>toast('🦄 Wow so easy!', {
+position: "bottom-right",
+autoClose: 5000,
+theme:"dark"
+})} className={`link ${ !session && "cursor-not-allowed"}`}>
+                
                         <p className="font-extrabold md:text-sm ">Orders </p>
                         
                     </div>
@@ -106,6 +112,7 @@ function Header() {
 
             </div>
 
+           
 
         </header>
     )
