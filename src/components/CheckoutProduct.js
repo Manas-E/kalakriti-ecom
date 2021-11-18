@@ -28,7 +28,7 @@ function CheckoutProduct({id,title,description,price,category,image="",quantity=
     }
  
     return (
-        <div className="grid grid-flow-col grid-col-5 select-none">     
+        <div className="grid grid-flow-col grid-col-5 select-none border-b-2">     
             <Image className="col-span-1" src={`/api/imageProxy?url=${encodeURIComponent(image)}`} loading="lazy" width={200} height={200} object-fit="contain"/>
 
             {/* middle */}
@@ -56,16 +56,16 @@ function CheckoutProduct({id,title,description,price,category,image="",quantity=
             {/* Right Add and remove button */}
             <div className="flex  spce-x-5 items-center  justify-self-end">
               
-                        <MinusCircleIcon   className= " text-yellow-400 h-20 active:text-yellow-500   " onClick={removeItemFromBasket}/>
+                        <MinusCircleIcon   className= " text-yellow-400 h-20 active:text-yellow-500  hover:animate-spin animate-none " onClick={removeItemFromBasket}/>
  
                         <span className="text-xl select-none"> {quantity}</span>
                
 
 
-                        <PlusCircleIcon  className= " text-yellow-400 h-20 active:text-yellow-500   " onClick={addItemToBasket} />
+                        <PlusCircleIcon  className= " text-yellow-400 h-20 active:text-yellow-500 hover:animate-spin  animate-none" onClick={addItemToBasket} />
 
 
-            </div>
+            </div>  
         </div>
     )
 }

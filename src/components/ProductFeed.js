@@ -32,7 +32,7 @@ function ProductFeed({products}) {
                     
                     <Card className="flex flex-col items-center addeffect m-5 p-5"  sx={{ maxWidth: 480 }}>
 
-                    <svg onClick={()=>session ? toast("You're already Signed in 😄", {
+                    <svg onClick={()=>session? toast("You're already Signed in 😄", {
                     position: "bottom-right",
                     autoClose: 5000,
                     theme:"dark"

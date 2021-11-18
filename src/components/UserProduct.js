@@ -8,6 +8,9 @@ import {signIn,signOut,useSession} from "next-auth/client"
 import { db } from '../../firebase'
 import { useRouter } from 'next/dist/client/router'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const MaxRating =5;
 const MinRating=1;
@@ -34,8 +37,12 @@ function Product({id,title,description,price,category,image,showButton=true,setT
        const nft =  await db.collection('nft').doc(id.toString())
        nft.delete().then((res)=>{
         console.log("Deleted Successsfully", id)
-        alert("Item deleted")
-
+ 
+        toast('Item got deleted ❌', {
+            position: "bottom-right",
+            autoClose: 5000,
+            theme:"dark"
+            })
        })
        router.push('/userProfile')
        setTrigger((prev)=>!prev)
@@ -49,8 +56,12 @@ function Product({id,title,description,price,category,image,showButton=true,setT
         if(update === 1)
         {
         const nft =  await db.collection('nft').doc(id.toString())
-            alert("Update Done")
-            console.log(name)
+        toast('Update Success 🥳', {
+            position: "bottom-right",
+            autoClose: 5000,
+            theme:"dark"
+            })
+        console.log(name)
         
             let data2update ={}
             if(name != undefined)

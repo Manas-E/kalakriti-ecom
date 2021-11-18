@@ -27,7 +27,6 @@ function GetSearchData({searchResultsData,category,query}) {
     return (
         <div className="flex flex-col">
         
-        <Header />
         
         { category !== undefined ? "" : searchResult   }
         

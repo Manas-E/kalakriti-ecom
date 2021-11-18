@@ -11,9 +11,27 @@ module.exports = {
         amazon_blue: {
           light: "#232F3E",
           DEFAULT: "#131921",
+        }, 
+        transitionTimingFunction: {
+          'inBounce': 'cubic-bezier(0.8, 0, 1, 1)',
+          'outBounce': 'cubic-bezier(0, 0, 0.2, 1)',
+         },
+        keyframes: {
+          "animate-bounce": {
+            '0%, 100%': { transform: 'translateY(0)',
+                         
+                          transitionTimingFunction: 'inBounce'
+              },
+            '50%': {     transform: 'translateY(25%)',
+                        
+                        transitionTimingFunction: 'outBounce'
+               },
+          }
         },
-        animation: ['group-hover'],
-
+        animation:{
+          animatebounce:" bounce 1s infinite"
+        } ,
+      
       },
     },
   },
@@ -24,4 +42,4 @@ module.exports = {
      }},
   },
   plugins: [require("@tailwindcss/line-clamp")],
-};
+}

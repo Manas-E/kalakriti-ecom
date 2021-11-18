@@ -6,11 +6,16 @@ import {signIn,signOut,useSession} from "next-auth/client"
 import firebase from "firebase"
 import { db } from '../../firebase';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Loader from '../components/Loader';
+
 function createNFT() {
     
 
     const [session] =useSession();
 
+    const [loading,setloading]= useState(false);
     const router =useRouter();
     const name = useRef();
     const image = useRef();
@@ -21,11 +26,15 @@ function createNFT() {
     const addNFT = async ()=>{
 
         if(url.length > 1000){
-            alert("Size matters! Please enter a short URL");
+            toast('Size matters! Please enter a short URL 😱', {
+                position: "bottom-right",
+                autoClose: 5000,
+                theme:"dark"
+                }) 
 
         }
         else{
-            
+        setloading(true);  
         const addnft = await db.collection('nft').add({
             title: name.current.value,
             description: description.current.value,
@@ -37,8 +46,13 @@ function createNFT() {
             category:category.current.value,
 
         }).then((res)=>{
+            setloading(false);  
 
-            alert("Congrats!! Your NFT added")
+            toast('Congrats!! Your NFT added 🥳', {
+            position: "bottom-right",
+            autoClose: 5000,
+            theme:"dark"
+            })
 
         }
         )
@@ -76,6 +90,9 @@ function createNFT() {
             </div>
          </div>
      )
+     <ToastContainer />
+     {loading ?<Loader loaderType={"loader"}  />
+: "" }
 
         </div>
     )

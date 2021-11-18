@@ -7,6 +7,9 @@ import Card from "@mui/material/Card";
 import { db } from '../../firebase'
 import UserProduct from '../components/UserProduct'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function UserProfile() {
     const [session] =useSession();
@@ -28,7 +31,7 @@ function UserProfile() {
 
                let data = doc.data()
                let id= doc.id;
-                if(doc.data().uid.toLowerCase() === query.toLowerCase() ) {
+                if(doc.data()?.uid?.toLowerCase() === query?.toLowerCase() ) {
                 // this.state.list.push(doc.data())
 
                 //   setList( [...list,doc.data()])
@@ -76,7 +79,7 @@ function UserProfile() {
             description={session?.user.email}
             />  
            
-           <div className=" hover:link">
+           <div onClick={()=>search(session.user.email)} className=" hover:link">
                 <h1 > My Art</h1>
             </div>
         </Card>
@@ -123,6 +126,7 @@ function UserProfile() {
            
 
 
+<ToastContainer />
 
         </div>
     )

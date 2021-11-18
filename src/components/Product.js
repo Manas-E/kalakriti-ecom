@@ -36,7 +36,7 @@ function Product({id,title,description,price,category,image,showButton=true}) {
                 {cformat.format(price,{code: "USD"})}
         </div>
 
-                <button onClick={addItemToBasket}  className={`${!showButton ? "hidden" : ""} mt-auto  button`}>Add to Basket</button>
+                <button onClick={addItemToBasket} className={`${!showButton ? "hidden" : ""} active:animate-bounce  mt-auto  button shadow-lg border-b-8 border-yellow-500`}>Add to Basket</button>
         </div>
     )
 }

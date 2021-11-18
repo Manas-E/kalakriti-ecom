@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import { MenuIcon,SearchIcon, ShoppingCartIcon} from "@heroicons/react/outline"
 import {signIn,signOut,useSession} from "next-auth/client"
@@ -9,6 +9,7 @@ import MenuBar from "./MenuBar"
 import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 
 const headerConstants={
 
@@ -24,6 +25,16 @@ function Header() {
     const [menu,setmenu]=useState(false);
     const qauery =useRef();
 
+   
+ useEffect(()=>{ 
+    document.addEventListener('keydown', function(event){
+    if(event.key == "Enter")
+    router.push({
+        pathname: '/searchResults',
+        query: {value:qauery.current.value},
+})
+})},[])
+
     return (
         <header>
             
@@ -36,11 +47,12 @@ function Header() {
                 </div>
 
                 <div className=" hidden sm:flex items-center h-10 rounded-md flex-grow   bg-yellow-400 hover:bg-yellow-500 cursor-pointer">
+                    
                     <input ref={qauery}
                         placeholder="Search by Art name"
                         className=" w-6 flex-grow flex-shrink p-2 rounded-l-md outline-none"
-                        type="text" />
-                        
+                        type="text " />
+                    
                         <svg onClick={()=>router.push({
                                 pathname: '/searchResults',
                                 query: {value:qauery.current.value},
@@ -48,9 +60,8 @@ function Header() {
                         
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg> 
-                         
+                        
                 </div>
-
                 <div className="ml-10 flex text-white items-center space-x-6 text-xs whitespace-nowrap    ">
 
                     <div className="link">
@@ -58,16 +69,15 @@ function Header() {
                         <p onClick={session?  signOut: signIn}  className="font-extrabold md:text-sm ">{!session? "Sign in" : "Sign Out" }</p>
                         
                     </div>
-                    
-                        <div onClick={()=>toast('🦄 Wow so easy!', {
-position: "bottom-right",
-autoClose: 5000,
-theme:"dark"
-})} className={`link ${ !session && "cursor-not-allowed"}`}>
+{/*                     
+                        <div onClick={()=>router.push({
+            pathname: "/order",
+            query: {value:session.user.email},
+    })} className={`link ${ !session && "cursor-not-allowed"}`}>
                 
                         <p className="font-extrabold md:text-sm ">Orders </p>
                         
-                    </div>
+                    </div> */}
                     
                     <div   onClick={()=>router.push("/checkout")} className="relative link flex items-center">
                         <span className="absolute p-0.5 top-0 right-0 md:right-11 font-bold  bg-yellow-400 rounded-full text-black">{items.length}</span>

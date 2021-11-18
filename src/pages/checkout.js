@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from '../components/Header'
 import Image from "next/image"
 import { useSelector } from 'react-redux';
@@ -8,13 +8,94 @@ import Anim from "../components/Anim";
 import { useRouter } from 'next/dist/client/router'
 import cformat  from "currency-formatter" 
 import {signIn,signOut,useSession} from "next-auth/client"
+import axios from 'axios';
+
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { route } from 'next/dist/server/router';
+import { createRouteLoader } from 'next/dist/client/route-loader';
+import { db } from '../../firebase';
 
 
 function Checkout() {
     const items= useSelector(selectItems);
     const router =useRouter();
     const [session] =useSession();
-    const total=useSelector(selectTotal);
+    var total= useSelector(selectTotal);
+    var paymentResponse = {}
+
+
+const createOrder =  async ()=>{
+    const order =  await db.collection('order').doc(session.user.email)
+
+    order.set({...items});
+
+
+
+}
+
+function loadRazorpay(){
+
+    const script = document.createElement("script");
+    script.src="https://checkout.razorpay.com/v1/checkout.js";
+    document.body.appendChild(script);
+  
+    script.onload=DisplayRazorpay();
+
+    script.onerror=()=>{
+      console.log("error");
+    }
+
+}
+
+
+    
+async function  DisplayRazorpay(){
+    total = Math.floor( total)
+    var paymentData={}
+      await axios.post(`http://localhost:3000/api/razorpay?price=${total}`)
+      .then((response) => {
+        console.log("===",response.data);
+        paymentData=response.data;
+      }, (error) => {
+        console.log("=======",error.response.data);
+    
+      });
+    
+      console.log("this is data: ",paymentData);
+      
+     
+      const options = {
+        key:process.env.RAZOR_PAY_KEY,
+        currency: paymentData.currency,
+        amount: paymentData.amount,
+        name: "Kalakriti",
+        description: "NFT Marketplace",
+        order_id: paymentData.id,
+        handler: function (response) {
+            paymentResponse = {"razorpay_payment_id": response.razorpay_payment_id,"razorpay_order_id": response.razorpay_order_id,"razorpay_signature": response.razorpay_signature}
+            alert('Order successful 🥳')
+            createOrder();
+
+            router.push("/")    
+
+        },
+        prefill: {
+          name: session.user.name,
+          email: session.user.email,
+        
+        },
+      };
+
+    
+    var paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+    
+    
+    
+    }
+    
 
     return (
         <div className="bg-gray-100">
@@ -65,12 +146,16 @@ function Checkout() {
 
                         </span>
                         </h2>
-                        <button  onClick={()=>router.push("/contact")}  className={`button mt-2 ${!session && "from-gray-300 to-gray-500 border-gray-200 text-gray-200 cursor-not-allowed "}`}>
+                        <button onClick={loadRazorpay}  className={`button mt-2 ${!session && "from-gray-300 to-gray-500 border-gray-200 text-gray-200 cursor-not-allowed "}`}>
                             {!session ? "Sign in to Proceed" : "Proceed toCheckout"}
                         </button>
                     </div> }
                 </div>
             </main>
+                        
+        
+            <ToastContainer />
+
         </div>
     )
 }
