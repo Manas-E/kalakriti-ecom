@@ -54,7 +54,7 @@ function loadRazorpay(){
 async function  DisplayRazorpay(){
     total = Math.floor( total)
     var paymentData={}
-      await axios.post(`http://localhost:3000/api/razorpay?price=${total}`)
+      await axios.post(`${process.env.NEXTAUTH_URL}/api/razorpay?price=${total}`)
       .then((response) => {
         console.log("===",response.data);
         paymentData=response.data;

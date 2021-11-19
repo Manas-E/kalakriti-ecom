@@ -16,7 +16,7 @@ function searchResults({dbRecords}) {
         <div>
             <Header />
 
-            <h1>Your Orders</h1>
+            <h1  className="font-extrabold text-3xl p-10">Your Orders</h1>
             <GetSearchData searchResultsData={dbRecords}  />
 
         </div>

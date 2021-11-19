@@ -11,8 +11,20 @@ const MinRating=1;
 function Product({id,title,description,price,category,image,showButton=true}) {
     const [rating] = useState(Math.floor(Math.random()*(MaxRating -MinRating +1)) +1 );
     const dispatch = useDispatch();
+
+
+    const randomQuote = ()=>{
+    const randomQuoteList = ["Yay you made the right choice🥳"]
+    return randomQuoteList[Math.floor(Math.random(randomQuoteList.length)+1)]
+    }
+
     const addItemToBasket= ()=>{
         dispatch(addToBasket({id,title,description,price,category,image}));
+        toast(randomQuote(), {
+            position: "bottom-right",
+            autoClose: 5000,
+            theme:"dark"
+            }) 
     }
 
     return (
