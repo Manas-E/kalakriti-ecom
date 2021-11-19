@@ -66,7 +66,7 @@ function Header() {
                         className=" w-6 flex-grow flex-shrink p-2 rounded-l-md outline-none"
                         type="text " />
                     
-                        <svg onClick={checkAndSend('/searchResults',qauery.current.value) } xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none"  viewBox="0 10 50 10" stroke="currentColor" className="h-12 p-2" >
+                        <svg onClick={()=>checkAndSend('/searchResults',qauery.current.value) } xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="none"  viewBox="0 10 50 10" stroke="currentColor" className="h-12 p-2" >
                         
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg> 
@@ -80,11 +80,11 @@ function Header() {
                         
                     </div>
                     
-                        <div onClick={checkAndSend("order",session.user.email) } className={`link ${ !session && "cursor-not-allowed"}`}>
+                        {/* <div onClick={()=>checkAndSend("order",session.user.email) } className={`link ${ !session && "cursor-not-allowed"}`}>
                 
                         <p className="font-extrabold md:text-sm ">Orders </p>
                         
-                    </div>
+                    </div> */}
                     
                     <div   onClick={()=>router.push("/checkout")} className="relative link flex items-center">
                         <span className="absolute p-0.5 top-0 right-0 md:right-11 font-bold  bg-yellow-400 rounded-full text-black">{items.length}</span>

@@ -5,6 +5,10 @@ import Image from "next/image"
 import { addToBasket } from '../slices/basketSlice';
 import { useDispatch } from 'react-redux';
 
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const MaxRating =5;
 const MinRating=1;
 
@@ -14,12 +18,14 @@ function Product({id,title,description,price,category,image,showButton=true}) {
 
 
     const randomQuote = ()=>{
-    const randomQuoteList = ["Yay you made the right choice🥳"]
-    return randomQuoteList[Math.floor(Math.random(randomQuoteList.length)+1)]
+    const randomQuoteList = ["Yay you made the right choice🥳","Awesome possum lovely blossom🐻","You are on a streak⚡","Smash that Add Button⚡🤩","Love the way you buy buddy"]
+    return randomQuoteList[Math.floor(Math.random(randomQuoteList.length)*10)]
     }
 
     const addItemToBasket= ()=>{
         dispatch(addToBasket({id,title,description,price,category,image}));
+        const rt = randomQuote()
+       
         toast(randomQuote(), {
             position: "bottom-right",
             autoClose: 5000,
