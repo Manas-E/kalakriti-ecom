@@ -45,7 +45,7 @@ function CheckoutProduct({id,title,description,price,category,image="",quantity=
                 <p className="text-xs line-clamp-2 my-2">{description}</p> 
 
                 <div className="mb-5"> 
-                {cformat.format(price,{code: "USD"})}
+                {cformat.format(price,{code: "INR"})}
 
                 </div>
 

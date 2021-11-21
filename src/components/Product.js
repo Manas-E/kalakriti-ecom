@@ -51,7 +51,7 @@ function Product({id,title,description,price,category,image,showButton=true}) {
         <p className="text-xs my-2 line-clamp-2">{description}</p>
 
         <div className="mb-5"> 
-                {cformat.format(price,{code: "USD"})}
+                {cformat.format(price,{code: "INR"})}
         </div>
 
                 <button onClick={addItemToBasket} className={`${!showButton ? "hidden" : ""} active:animate-bounce  mt-auto  button shadow-lg border-b-8 border-yellow-500`}>Add to Basket</button>
