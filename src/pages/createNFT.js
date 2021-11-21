@@ -65,8 +65,8 @@ function createNFT() {
     return (
         <div>
             <Header />
-            <div className="login  flex flex-col items-center p-10">
-            <h1 className="font-extrabold text-3xl p-10"> Add your NFT Details</h1>
+            <div className="login  flex flex-col items-center p-5">
+            <h1 className="font-extrabold text-3xl p-5 pb-5"> Add your NFT Details</h1>
          
             <div className="flex flex-col w-80 bg-amazon_blue-light items-center rounded-lg">
 
