@@ -81,7 +81,7 @@ function Header() {
                     </div>
                     
                         <div onClick={()=>(session && router.push({ pathname: "/order",
-                                                                    query: session.user.email  })) } className={`link ${ !session && "cursor-not-allowed"}`}>
+                                                                    query:{value: session.user.email}   })) } className={`link ${ !session && "cursor-not-allowed"}`}>
                 
                         <p className="font-extrabold md:text-sm ">Orders </p>
                         
