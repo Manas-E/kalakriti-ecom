@@ -24,8 +24,8 @@ function  Contact() {
   
    setname(fname?.current.value + lname?.current.value)
    setloading(true);
-  const req= await axios.post(`http://localhost:3000/api/server?name=${name}&email=${email.current.value}&sub=${sub.current.value}&message=${msg.current.value}`).then((response)=> {
-  console.log(response);
+  const req= await axios.post(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/server?name=${name}&email=${email.current.value}&sub=${sub.current.value}&message=${msg.current.value}`).then((response)=> {
+  console.log(process.env.NEXT_PUBLIC_NEXTAUTH_URL);
   
   if (response.status === 200) {
         toast('Bingo Message Sent 🤩', {

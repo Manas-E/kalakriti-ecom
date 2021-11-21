@@ -55,7 +55,7 @@ function UserProfile() {
 
     useEffect( async ()=>{
 
-        const a = await search(session.user.email)
+        const a = await search(session?.user.email)
         return a 
 
     },[updateTrigger])
@@ -71,7 +71,7 @@ function UserProfile() {
             
             <Card onClick={()=>{ search(session.user.email)}} className="flex flex-col items-center addeffect m-5 p-10"  sx={{ maxWidth: 480 }}>
     
-            <Image  src={session?.user.photoURL? session?.user.photoURL : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSEnpesBaz7Jeox6d48DYl9ZUljgIojFbspw&usqp=CAU"} width={100} height={100} 
+            <Image  src={  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSEnpesBaz7Jeox6d48DYl9ZUljgIojFbspw&usqp=CAU"  && session?.user.image } width={100} height={100} 
              className="rounded-full" />                                      
 
             <MyCard 

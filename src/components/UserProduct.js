@@ -87,11 +87,11 @@ function Product({id,title,description,price,category,image,showButton=true,setT
         <div className="relative flex flex-col bg-white z-30 p-10 m-5 addeffect select-none">
         <PencilAltIcon  onClick={updateItem} className="absolute bottom-2 right-2 text-xs italic text-gray-400 w-8 h-8 hover:text-green-500 hover:cursor-pointer" />
         <TrashIcon onClick={removeItem} className="absolute top-2 right-2 text-xs italic text-gray-400 w-8 h-8  hover:text-red-500 hover:cursor-pointer"/>
-        <Image src={`/api/imageProxy?url=${encodeURIComponent(image)}`} loading="lazy" height={200} width={200} objectFit="contain" />  
-
-       { !updateClicked ? <div>
+        <Image src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJC7vsNyuLBgWhs6JnH29BbJHKOIB0lbcjxGvc705vV1V3kfAW_IwonqH1s_MzqYLHi7I&usqp=CAU" &&   `/api/imageProxy?url=${encodeURIComponent(image)}`} loading="lazy" height={200} width={200} objectFit="contain" />  
 
        
+        { !updateClicked ? <div>
+
        <h4 className="my-3">{title}   </h4>
 
         <div className="flex">

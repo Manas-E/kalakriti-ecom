@@ -16,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { route } from 'next/dist/server/router';
 import { createRouteLoader } from 'next/dist/client/route-loader';
 import { db } from '../../firebase';
+import firebase from "firebase"
 
 
 function Checkout() {
@@ -25,11 +26,31 @@ function Checkout() {
     var total= useSelector(selectTotal);
     var paymentResponse = {}
 
+    useEffect( async ()=>{
+        const order =  await db.collection('order').doc(session.user.email)
 
-const createOrder =  async ()=>{
+        var dbData=   await  order.get().then((doc)=>doc.data())
+        console.log(dbData,"***********")
+
+    },[])
+
+
+const createOrder =  async (paymentResponse)=>{
     const order =  await db.collection('order').doc(session.user.email)
 
-    order.set({...items});
+   var dbData=   await  order.get().then((doc)=>doc.data())
+
+   console.log(typeof(dbData),"***********")
+
+    var items1 =[] 
+    const date =   firebase.firestore.Timestamp.fromDate(new Date()).toDate().toString() 
+
+    items1.push(...Object.values(dbData))
+    console.log(items1,"=====")
+
+    items.map((item)=>items1.push({...item,paymentResponse,date:date }))
+
+    order.set({...items1});
 
 
 
@@ -54,7 +75,7 @@ function loadRazorpay(){
 async function  DisplayRazorpay(){
     total = Math.floor( total)
     var paymentData={}
-      await axios.post(`${process.env.NEXTAUTH_URL}/api/razorpay?price=${total}`)
+      await axios.post(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/razorpay?price=${total}`)
       .then((response) => {
         console.log("===",response.data);
         paymentData=response.data;
@@ -76,7 +97,7 @@ async function  DisplayRazorpay(){
         handler: function (response) {
             paymentResponse = {"razorpay_payment_id": response.razorpay_payment_id,"razorpay_order_id": response.razorpay_order_id,"razorpay_signature": response.razorpay_signature}
             alert('Order successful 🥳')
-            createOrder();
+            createOrder(paymentResponse);
 
             router.push("/")    
 

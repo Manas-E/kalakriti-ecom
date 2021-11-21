@@ -7,9 +7,11 @@ import Card from "@mui/material/Card";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {signIn,signOut,useSession} from "next-auth/client"
+import { useRouter } from 'next/dist/client/router';
 
 function ProductFeed({products}) {
     const [session] =useSession();
+    const router =useRouter();
 
     return (
         <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:-mt-52 mx-auto ">
@@ -50,7 +52,7 @@ function ProductFeed({products}) {
    
                     </Card>
                     <Card className="flex flex-col items-center addeffect m-5 p-5"  sx={{ maxWidth: 480 }}>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="text-yellow-400  flex flex-col h-16 w-16"  viewBox="0 0 20 20" fill="currentColor">
+                        <svg onClick={()=>router.push("/createNFT")} xmlns="http://www.w3.org/2000/svg" className="text-yellow-400 cursor-pointer flex flex-col h-16 w-16"  viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
                         </svg>
              

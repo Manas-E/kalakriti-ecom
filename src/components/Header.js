@@ -27,7 +27,7 @@ function Header() {
 
     const checkAndSend =(path,value) =>{
 
-        if(a=="" || a==undefined)
+        if(value=="" || value==undefined)
         toast('Oh! you forget to enter text', {
             position: "bottom-right",
             autoClose: 5000,
@@ -80,11 +80,11 @@ function Header() {
                         
                     </div>
                     
-                        {/* <div onClick={()=>checkAndSend("order",session.user.email) } className={`link ${ !session && "cursor-not-allowed"}`}>
+                        <div onClick={()=>(session && checkAndSend("order",session?.user?.email) )} className={`link ${ !session && "cursor-not-allowed"}`}>
                 
                         <p className="font-extrabold md:text-sm ">Orders </p>
                         
-                    </div> */}
+                    </div>
                     
                     <div   onClick={()=>router.push("/checkout")} className="relative link flex items-center">
                         <span className="absolute p-0.5 top-0 right-0 md:right-11 font-bold  bg-yellow-400 rounded-full text-black">{items.length}</span>
@@ -102,15 +102,16 @@ function Header() {
             <div className="flex items-center bg-amazon_blue-light space-x-3 p-2 pl-6  text-white ">
                 <p className="link flex items-center" >
                     <MenuIcon onClick={()=>setmenu(!menu)} className="h-10"/>
+                    <div className="absolute top-28 z-40" style={{display: menu? "" : "none"}}> <MenuBar /> </div>
+              
                     <p onClick={()=>router.push("/")}>All</p>
                 </p>
-                <div className="absolute top-28 z-40" style={{display: menu? "" : "none"}}> <MenuBar /> </div>
-                <p className="link" onClick={()=>router.push({
+               <p className="link hidden md:inline" onClick={()=>router.push({
                                 pathname: '/searchResults',
                                 query: {category:"anime"} })}
                                 >Anime</p>
 
-                <p className="link" onClick={()=>router.push({
+                <p className="link hidden md:inline" onClick={()=>router.push({
                                 pathname: '/searchResults',
                                 query: {category:"abstract"} })}
                                 >Abstract</p>
@@ -125,7 +126,7 @@ function Header() {
                                 query: {category:"gif"} })}
                                 >Gif's</p>
 
-                <p className={`${!session && "cursor-not-allowed"} link hidden md:inline`} onClick={()=>(session && router.push("/createNFT"))}>Create NFT</p>
+                <p className={`${!session && "cursor-not-allowed"} link `} onClick={()=>(session && router.push("/createNFT"))}>Create NFT</p>
 
             </div>
 

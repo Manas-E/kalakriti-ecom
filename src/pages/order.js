@@ -6,6 +6,8 @@ import { db } from '../../firebase';
 import GetSearchData from '../components/GetSearchData';
 import Fuse from 'fuse.js'
 import Header from '../components/Header';
+import Product from '../components/Product';
+import GetOrderData from '../components/GetOrderData';
 
 
 function searchResults({dbRecords}) {
@@ -17,7 +19,7 @@ function searchResults({dbRecords}) {
             <Header />
 
             <h1  className="font-extrabold text-3xl p-10">Your Orders</h1>
-            <GetSearchData searchResultsData={dbRecords}  />
+            <GetOrderData searchResultsData={dbRecords}  />
 
         </div>
     )

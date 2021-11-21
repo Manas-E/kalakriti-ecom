@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var cors = require('cors');
 const creds = require('./config.js');
+require('dotenv').config()
 
 import nodemailer from "nodemailer"
 
