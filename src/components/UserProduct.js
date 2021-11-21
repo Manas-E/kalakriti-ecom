@@ -104,7 +104,7 @@ function Product({id,title,description,price,category,image,showButton=true,setT
         <p className="text-xs my-2 line-clamp-2">{description}</p>
 
         <div className="mb-5"> 
-                {cformat.format(price,{code: "USD"})}
+                {cformat.format(price,{code: "INR"})}
 
         </div>
 

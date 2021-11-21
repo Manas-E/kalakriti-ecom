@@ -163,7 +163,7 @@ async function  DisplayRazorpay(){
                         <h2 className="whitespace-nowrap">Subtotal ({items.length} items): 
 
                         <span className="font-bold"> 
-                            {cformat.format(total,{code: "USD"})}
+                            {cformat.format(total,{code: "INR"})}
 
                         </span>
                         </h2>
