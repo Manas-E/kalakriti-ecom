@@ -42,12 +42,13 @@ export async function getServerSideProps(context){
 {
 console.log(query,"-----------")
 
- await db.collection('order').get().then(
-  (snapshots)=>snapshots.forEach(
-        (doc)=>{
-            dbRecords=   Object.values(doc.data())
-    }
-    )
+ await db.collection('order').doc(query).get().then(
+  (snapshots)=>{
+   
+            console.log(snapshots.data(),"this is data ")
+            dbRecords=   Object.values(snapshots.data())
+    
+  }
 
   
    

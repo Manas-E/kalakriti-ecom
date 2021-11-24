@@ -45,7 +45,8 @@ const createOrder =  async (paymentResponse)=>{
     var items1 =[] 
     const date =   firebase.firestore.Timestamp.fromDate(new Date()).toDate().toString() 
 
-    items1.push(...Object.values(dbData))
+    if(dbData!=undefined)
+        items1.push(...Object.values(dbData))
     console.log(items1,"=====")
 
     items.map((item)=>items1.push({...item,paymentResponse,date:date }))
